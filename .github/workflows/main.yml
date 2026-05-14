@@ -1,0 +1,28 @@
+name: Run Selenium Test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3
+
+      - name: Setup Java 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: '11'
+          cache: maven
+
+      - name: Setup Microsoft Edge
+        uses: browser-actions/setup-edge@latest
+
+      - name: Run Tests
+        run: mvn clean test
+        shell: bash

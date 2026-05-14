@@ -6,51 +6,51 @@ import com.qacart.todo.utils.UserUtils;
 import io.restassured.http.Cookie;
 import io.restassured.http.Cookies;
 import io.restassured.response.Response;
-
+import com.qacart.todo.utils.ConfigUtils;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
-
 public class RegisterApi {
 
-    public static List<Cookie> restAssuredCookies;
+    private List<Cookie> restAssuredCookies;
+    private String accessToken;
+    private String userId;
+    private String firstName;
+
     public List<Cookie> getCookies() {
-        return this.restAssuredCookies;
+        return restAssuredCookies;
     }
 
-    private static String accessToken;
     public String getToken() {
-        return this.accessToken;
+        return accessToken;
     }
 
-    private static String userId;
     public String getUserId() {
-        return this.userId;
+        return userId;
     }
 
-    private static String firstName;
     public String getFirstName() {
-        return this.firstName;
+        return firstName;
     }
-
-    public void setAccessToken(String accessToken) {}
 
     public void register() {
+
         User user = UserUtils.generateRandomUser();
+
         Response response =
                 given()
-                   .baseUri("https://todo.qacart.com")
-                   .header("Content-Type", "application/json")
-                   .body(user)
-                    .log().all()
-                .when()
-                   .post(EndPoint.API_Register_Endpoint)
-                .then()
-                    .log().all()
-                   .extract().response();
+                        .baseUri(ConfigUtils.getInstance().getBaseUrl())
+                        .header("Content-Type", "application/json")
+                        .body(user)
+                        .log().all()
+                        .when()
+                        .post(EndPoint.API_Register_Endpoint)
+                        .then()
+                        .log().all()
+                        .extract().response();
 
         if (response.statusCode() != 201) {
-            throw new RuntimeException("Something went wrong with the request");
+            throw new RuntimeException("Registration failed");
         }
 
         restAssuredCookies = response.detailedCookies().asList();

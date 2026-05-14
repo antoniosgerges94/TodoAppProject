@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="TodoApp Suite" parallel="methods" thread-count="3">
+
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+
+    <test name="All Tests">
+        <classes>
+            <class name="com.qacart.todo.testcases.LoginTest"/>
+            <class name="com.qacart.todo.testcases.TodoTest"/>
+        </classes>
+    </test>
+
+</suite>

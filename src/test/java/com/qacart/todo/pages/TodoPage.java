@@ -3,6 +3,7 @@ package com.qacart.todo.pages;
 import com.qacart.todo.base.BasePage;
 import com.qacart.todo.config.EndPoint;
 import com.qacart.todo.utils.ConfigUtils;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,11 +34,13 @@ public class TodoPage extends BasePage {
         super(driver);
     }
 
+    @Step
     public TodoPage load(){
         driver.get(ConfigUtils.getInstance().getBaseUrl() + EndPoint.Todo_Endpoint);
         return this;
     }
 
+    @Step
     public boolean isWelcomeMessageDisplayed() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement element = wait.until(
@@ -46,6 +49,7 @@ public class TodoPage extends BasePage {
         return element.isDisplayed();
     }
 
+    @Step
     public NewTodoPage clickOnPlusButton() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(addButton))
@@ -53,23 +57,35 @@ public class TodoPage extends BasePage {
         return new NewTodoPage(driver);
     }
 
+    @Step
     public String getTodoText() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.visibilityOf(todoText));
         return todoText.getText();
     }
 
+    @Step
     public TodoPage clickOnDeleteButton() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
         wait.until(ExpectedConditions.elementToBeClickable(
                 By.cssSelector("[data-testid='delete']")
         )).click();
+
+        // 2. انتظر اختفاء الـ todo item نفسه
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(
+                By.cssSelector("[data-testid='delete']")
+        ));
+
         return this;
     }
 
+    @Step
     public boolean isNoTodosMessageDisplayed() {
         new WebDriverWait(driver, Duration.ofSeconds(10))
-                .until(ExpectedConditions.visibilityOf(noTodosMessage));
-        return noTodosMessage.isDisplayed();
+                .until(ExpectedConditions.visibilityOfElementLocated(
+                        By.cssSelector("[data-testid='no-todos']")
+                ));
+        return true;
     }
 }

@@ -21,13 +21,12 @@ public class ConfigUtils {
         }
     }
 
-    private static ConfigUtils configUtils;
+    private static final ConfigUtils configUtils = new ConfigUtils();
 
-    public static ConfigUtils getInstance(){
-        if(configUtils == null){
-            configUtils = new ConfigUtils();}
+    public static ConfigUtils getInstance() {
         return configUtils;
     }
+
 
     public String getBaseUrl(){
        String prop = properties.getProperty("baseUrl");
