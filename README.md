@@ -171,7 +171,7 @@ This is managed via `testng.xml` and the Maven Surefire plugin configuration in 
 ## 👤 Author
 
 **Antonios Gerges Hakim Eskandar**  
-Software QA Engineer  
+Software QA/QC Engineer  
 📧 antoniosgerges94@gmail.com  
 🔗 [linkedin.com/in/antonios-eskandar](https://linkedin.com/in/antonios-eskandar)  
 🐙 [github.com/antoniosgerges94](https://github.com/antoniosgerges94)
