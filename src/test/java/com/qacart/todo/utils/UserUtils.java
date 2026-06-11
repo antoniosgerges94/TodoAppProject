@@ -11,7 +11,7 @@ public class UserUtils {
         String lastName = new Faker().name().lastName();
         String email = new Faker().internet().emailAddress();
         String password = "fzapsKUZIXentTM";
-        User user = new User(lastName,lastName,email,password);
+        User user = new User(firstName,lastName,email,password);
         return user;
     }
 }

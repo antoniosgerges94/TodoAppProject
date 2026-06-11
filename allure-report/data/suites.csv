@@ -1,4 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","5541","Deleting Todo Task TC","Surefire suite","2026-05-14","passed","2026-05-14","com.qacart.todo.testcases.TodoTest","Surefire test","com.qacart.todo.testcases.TodoTest","DeleteTodo"
-"","2115","Login TC-01","Surefire suite","2026-05-14","passed","2026-05-14","com.qacart.todo.testcases.LoginTest","Surefire test","com.qacart.todo.testcases.LoginTest","Login_functionality"
-"","4631","Adding Todo Task TC","Surefire suite","2026-05-14","passed","2026-05-14","com.qacart.todo.testcases.TodoTest","Surefire test","com.qacart.todo.testcases.TodoTest","AddNewTodo"
