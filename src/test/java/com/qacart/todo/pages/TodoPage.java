@@ -72,7 +72,6 @@ public class TodoPage extends BasePage {
                 By.cssSelector("[data-testid='delete']")
         )).click();
 
-        // 2. انتظر اختفاء الـ todo item نفسه
         wait.until(ExpectedConditions.invisibilityOfElementLocated(
                 By.cssSelector("[data-testid='delete']")
         ));
